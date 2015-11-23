@@ -16,14 +16,21 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
-            'auth_key' => $this->string(32)->notNull(),
+            'email' => $this->string()->notNull()->unique(),
+            'name' => $this->string()->notNull(),
+            'phone' => $this->string()->unique(),
+            'identity_no' => $this->string()->unique(),
+            'identity_type' => "ENUM('KTP','SIM','PASSPORT') DEFAULT 'KTP'",
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
-            'email' => $this->string()->notNull()->unique(),
-
+            'active_token' => $this->string()->notNull(),
+            'auth_key' => $this->string(32)->notNull(),
+            'is_verified' => $this->boolean()->defaultValue(FALSE),
+            'last_login' => $this->integer(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
+            'group_id' => $this->integer()->notNull(),
         ], $tableOptions);
     }
 

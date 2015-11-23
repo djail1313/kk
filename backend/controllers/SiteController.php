@@ -6,6 +6,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use common\components\AccessRule;
+use common\models\User;
 
 /**
  * Site controller
@@ -20,15 +22,16 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                // Override the default rule config with the new AccessRule class
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index', 'about', 'contact'],
                 'rules' => [
-                    [
-                        'actions' => ['login', 'error'],
+                    [   
+                        'controllers' => [Yii::$app->controller->id],
+                        'actions' => [Yii::$app->controller->action->id],
                         'allow' => true,
-                    ],
-                    [
-                        'actions' => ['logout', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
                     ],
                 ],
             ],
@@ -79,5 +82,25 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    /**
+     * Displays about page.
+     *
+     * @return mixed
+     */
+    public function actionAbout()
+    {   
+        return $this->render('about');
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return mixed
+     */
+    public function actionContact()
+    {
+        return $this->render('contact');
     }
 }
