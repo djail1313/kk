@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserGroupSearch */
@@ -25,9 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'name',
-            'status',
+            [
+                'attribute'=>'status',
+                'value'=>function($row){
+                    return $row->status===10?'Active':'Non Active';
+                },
+                'filter'=>ArrayHelper::map(
+                    [
+                        ['id'=>10,'name'=>'Active'],
+                        ['id'=>0,'name'=>'Non Active']
+                    ],
+                    'id','name'),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

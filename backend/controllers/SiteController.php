@@ -26,7 +26,7 @@ class SiteController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['index', 'about', 'contact'],
+                // 'only' => ['index', 'about', 'contact'],
                 'rules' => [
                     [   
                         'controllers' => [Yii::$app->controller->id],

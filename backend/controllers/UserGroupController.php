@@ -3,11 +3,13 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use common\models\UserGroup;
 use common\models\UserGroupSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\components\AccessRule;
 
 /**
  * UserGroupController implements the CRUD actions for UserGroup model.
@@ -17,6 +19,21 @@ class UserGroupController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                // Override the default rule config with the new AccessRule class
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                // 'only' => [''],
+                'rules' => [
+                    [   
+                        'controllers' => [Yii::$app->controller->id],
+                        'actions' => [Yii::$app->controller->action->id],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

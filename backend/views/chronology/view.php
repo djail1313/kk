@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Role */
+/* @var $model common\models\Chronology */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Roles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Chronologies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="role-view">
+<div class="chronology-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,13 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'app',
-            'controller',
-            'action',
-            [
-                'attribute'=>'group_id',
-                'value'=>$model->userGroup->name,
-            ],
+            'chronology_date',
+            'place',
+            'description:ntext',
         ],
     ]) ?>
 

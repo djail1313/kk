@@ -2,23 +2,21 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
-use common\models\UserGroup;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\RoleSearch */
+/* @var $searchModel common\models\CasesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Roles';
+$this->title = 'Cases';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="role-index">
+<div class="cases-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Role', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Cases', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,14 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'attribute'=>'group_id',
-                'value'=>'userGroup.name',
-                'filter'=>ArrayHelper::map(UserGroup::find()->asArray()->all(),'id','name')
-            ],
-            'app',
-            'controller',
-            'action',
+            'id',
+            'name',
+            'case_date',
+            'case_type_id',
+            'agency_id',
+            // 'subject_id',
+            // 'chronology_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

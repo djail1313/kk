@@ -45,7 +45,11 @@ class Role extends \yii\db\ActiveRecord
             'app' => 'App',
             'controller' => 'Controller',
             'action' => 'Action',
-            'group_id' => 'Group ID',
+            'group_id' => 'User Group',
         ];
+    }
+
+    public function getUserGroup(){
+        return $this->hasOne(UserGroup::className(), ['id'=>'group_id']);
     }
 }
