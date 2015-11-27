@@ -20,9 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
                 <?= $form->field($model, 'username') ?>
-
                 <?= $form->field($model, 'email') ?>
-
+                <?= $form->field($model, 'name') ?>
+                <?= $form->field($model, 'identity_type') ?>
+                <?= $form->field($model, 'identity_no') ?>
+                <?= $form->field($model, 'phone') ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <div class="form-group">

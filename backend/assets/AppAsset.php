@@ -25,5 +25,14 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'backend\assets\AdminAsset',
     ];
+    public function init()
+    {
+        parent::init();
+        \Yii::$app->assetManager->bundles['yii\\bootstrap\\BootstrapAsset'] = [
+            'css' => [],
+            'js' => [],
+        ];
+    }
 }
