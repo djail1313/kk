@@ -19,12 +19,16 @@ class AdminAsset extends AssetBundle
     public $baseUrl = '@web';
     // public $sourcePath = '@web';
     public $css = [
-        // 'css/site.css',
+        'template-admin/css/style.default.css',
     ];
     public $js = [
-
+        'template-admin/js/jquery-migrate-1.2.1.min.js',
+        'template-admin/js/bootstrap.min.js',
+        'template-admin/js/modernizr.min.js',
+        'template-admin/js/jquery.sparkline.min.js',
+        'template-admin/js/toggles.min.js',
+        'template-admin/js/retina.min.js',
+        'template-admin/js/jquery.cookies.js',
+        'template-admin/js/custom.js',
     ];
-    // public $jsOptions = [
-    //     'position' => View::POS_HEAD,
-    // ];
 }

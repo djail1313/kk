@@ -26,9 +26,6 @@ return [
                 ],
             ],
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
@@ -36,14 +33,32 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule', 
-                    'controller' => ['role','user-group'],
+                    'controller' => [
+                        'agency',
+                        'agenda',
+                        'case-type',
+                        'cases',
+                        'chronology',
+                        'migration',
+                        'progress',
+                        'role',
+                        'status',
+                        'subject',
+                        'user',
+                        'user-group',
+                    ],
                 ],
+                'POST user/login' => 'user/login'
             ],
         ],
         'request' => [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ]
+        ],
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
         ],
     ],
     'params' => $params,
